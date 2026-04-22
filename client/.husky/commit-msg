@@ -1,0 +1,2 @@
+MSG_FILE="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+cd client && npx --no -- commitlint --edit "$MSG_FILE"
