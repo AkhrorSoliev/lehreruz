@@ -1,0 +1,20 @@
+:root{
+--font-display:'Bricolage Grotesque','Onest',system-ui,sans-serif;
+--font-ui:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
+--font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+
+--fs-display-xl:64px;--lh-display-xl:1.02;/* @kind other */
+--fs-display-l:48px;--lh-display-l:1.06;/* @kind other */
+--fs-h1:40px;--lh-h1:1.1;/* @kind other */
+--fs-h2:32px;--lh-h2:1.15;/* @kind other */
+--fs-h3:24px;--lh-h3:1.25;/* @kind other */
+--fs-h4:20px;--lh-h4:1.3;/* @kind other */
+--fs-body-l:18px;--lh-body-l:1.55;/* @kind other */
+--fs-body:16px;--lh-body:1.55;/* @kind other */
+--fs-body-s:14px;--lh-body-s:1.5;/* @kind other */
+--fs-caption:13px;--lh-caption:1.4;/* @kind other */
+--fs-overline:12px;--lh-overline:1.2;/* @kind other */
+
+--fw-regular:400;/* @kind other */--fw-medium:500;/* @kind other */--fw-semibold:600;/* @kind other */--fw-bold:700;/* @kind other */--fw-black:800;/* @kind other */
+--ls-display:-0.03em;/* @kind other */--ls-heading:-0.02em;/* @kind other */--ls-body:0;/* @kind other */--ls-overline:0.08em;/* @kind other */
+}

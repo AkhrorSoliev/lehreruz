@@ -1,0 +1,13 @@
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--bg-page);color:var(--text-body);font-family:var(--font-ui);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);color:var(--text-strong);letter-spacing:var(--ls-heading);font-weight:var(--fw-bold);text-wrap:balance}
+h1{font-size:var(--fs-h1);line-height:var(--lh-h1)}h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}h3{font-size:var(--fs-h3);line-height:var(--lh-h3)}h4{font-size:var(--fs-h4);line-height:var(--lh-h4);font-family:var(--font-ui);letter-spacing:-0.01em;font-weight:var(--fw-semibold)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--text-link);text-decoration:underline;text-decoration-color:var(--gold-500);text-decoration-thickness:2px;text-underline-offset:3px;transition:text-decoration-color var(--dur-fast) var(--ease-out)}
+a:hover{color:var(--text-strong);text-decoration-color:var(--ink-900)}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--gold-200);color:var(--ink-900)}
+/* Brand motif — the "marker" highlight behind a word */
+.lz-mark{background:linear-gradient(transparent 58%,var(--gold-500) 58%,var(--gold-500) 92%,transparent 92%);padding:0 .08em}
+.lz-overline{font-family:var(--font-ui);font-size:var(--fs-overline);line-height:var(--lh-overline);font-weight:var(--fw-semibold);letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--text-muted)}
+.lz-mono{font-family:var(--font-mono);font-weight:500;font-feature-settings:"tnum"}

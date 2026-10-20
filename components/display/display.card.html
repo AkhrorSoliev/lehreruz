@@ -1,0 +1,18 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Display — Badge, Tag, Avatar, Rating, Progress, Tooltip" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:20px;background:var(--paper-0)}.r{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.col{display:flex;flex-direction:column;gap:16px}.lbl{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);width:84px}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.LehrerUzDesignSystem_0855c7;
+const { Badge, Tag, Avatar, Rating, ProgressBar, Tooltip, IconButton } = NS;
+function Demo(){const [sel,setSel]=React.useState('A1');return <div className="col">
+<div className="r"><span className="lbl">badge</span><Badge tone="gold">Bestseller</Badge><Badge tone="info">Yangi</Badge><Badge tone="sale">−40%</Badge><Badge tone="success" icon="check">Tugallandi</Badge><Badge tone="goldSoft">Eng yuqori baho</Badge><Badge>A1 · Boshlang‘ich</Badge><Badge tone="inverse" icon="award">Sertifikat</Badge></div>
+<div className="r"><span className="lbl">tag</span>{['A1','A2','B1','B2','Goethe'].map(l=><Tag key={l} selected={sel===l} onClick={()=>setSel(l)} count={l==='A1'?24:undefined}>{l}</Tag>)}<Tag icon="headphones">Tinglash</Tag></div>
+<div className="r"><span className="lbl">avatar</span><Avatar name="Dilnoza Karimova" ring /><Avatar name="Jasur Toshmatov" /><Avatar name="Madina Yusupova" /><Avatar name="Anna Weber" size={32} /><Rating value={4.8} count={1240} /><Rating value={4.3} size="sm" /></div>
+<div className="r"><span className="lbl">progress</span><ProgressBar value={64} label="Davom etmoqda" showValue style={{width:220}} /><ProgressBar value={100} tone="success" label="Tugallandi" showValue style={{width:180}} /><Tooltip label="Sevimlilarga qo‘shish" open><IconButton icon="heart" label="Sevimli" variant="secondary" /></Tooltip></div>
+</div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

@@ -1,0 +1,101 @@
+<!-- @dsCard group="lehrer.uz Web" viewport="1280x820" name="lehrer.uz — web app (click-through)" subtitle="Home → Market → Course → Click/Payme/Uzum checkout → Player" -->
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lehrer.uz — Nemis tilini o‘zbek tilida o‘rganing</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="home.css">
+<style>body{min-width:1180px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script>
+const { Wordmark, Button, IconButton, Icon, Input, Select, Checkbox, Radio, Switch, Tabs, Tag, Badge, Avatar, Rating, ProgressBar, Tooltip, Dialog, Toast, CourseCover, CourseCard, PriceTag, PaymentMethod, LessonItem, FileItem, Comment } = window.LehrerUzDesignSystem_0855c7;
+</script>
+<script src="data.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Motion.jsx"></script>
+<script type="text/babel" src="Chrome.jsx"></script>
+<script type="text/babel" src="HomeMore.jsx"></script>
+<script type="text/babel" src="MobileApp.jsx"></script>
+<script type="text/babel" src="Home.jsx"></script>
+<script type="text/babel" src="Market.jsx"></script>
+<script type="text/babel" src="CourseDetail.jsx"></script>
+<script type="text/babel" src="Checkout.jsx"></script>
+<script type="text/babel" src="Player.jsx"></script>
+<script type="text/babel" src="Login.jsx"></script>
+<script src="ExamData.js"></script>
+<script type="text/babel" src="Exam.jsx"></script>
+<script type="text/babel">
+const LZ_KEY = 'lehrer-kit-v1';
+const lzLoad = () => { try { return JSON.parse(localStorage.getItem(LZ_KEY)) || {}; } catch (e) { return {}; } };
+
+function App() {
+  const data = window.LZ_DATA;
+  const saved = lzLoad();
+  const [route, setRoute] = React.useState(saved.user ? { name: 'home' } : { name: 'login', back: { name: 'home' } });
+  const [user, setUser] = React.useState(saved.user || null);
+  const [cart, setCart] = React.useState(saved.cart || ['b1']);
+  const [owned, setOwned] = React.useState(saved.owned || ['grammar', 'vocab']);
+  const [done, setDone] = React.useState(saved.done || { 1: true, 2: true, 3: true, 4: true, 5: true, 6: true });
+  const [checkout, setCheckout] = React.useState(null);
+  const [pending, setPending] = React.useState(null);
+  const [toast, setToast] = React.useState(null);
+  const [bare, setBare] = React.useState(false);
+  React.useEffect(() => { localStorage.setItem(LZ_KEY, JSON.stringify({ user, cart, owned, done })); }, [user, cart, owned, done]);
+  React.useEffect(() => { if (!toast) return; const id = setTimeout(() => setToast(null), 3200); return () => clearTimeout(id); }, [toast]);
+
+  const go = (name, params = {}) => { setRoute({ name, ...params }); window.scrollTo(0, 0); };
+  const notify = (title, message, tone = 'success') => setToast({ title, message, tone });
+  const openCourse = id => go('course', { id });
+  const openPlayer = (id, lesson) => go('player', { id, lesson });
+  const requireLogin = action => { if (user) return action(); setPending(() => action); go('login', { back: route }); };
+  const buy = id => requireLogin(() => {
+    const c = data.courses.find(x => x.id === id);
+    if (c.free) { setOwned(o => [...new Set([...o, id])]); notify('Kursga yozildingiz', c.title); openPlayer(id, 1); return; }
+    setCheckout([id]);
+  });
+  const addCart = id => { setCart(c => [...new Set([...c, id])]); notify('Savatga qo‘shildi', data.courses.find(x => x.id === id).title); };
+  const paid = (items, start) => {
+    setOwned(o => [...new Set([...o, ...items])]); setCart(c => c.filter(x => !items.includes(x))); setCheckout(null);
+    notify('Kurs ochildi', 'Yaxshi o‘qishlar! Viel Erfolg!');
+    if (start) openPlayer(items[0], 7); else if (route.name === 'cart') go('my');
+  };
+  const progress = { grammar: 42, vocab: 100, a1: Math.round(Object.keys(done).length / 14 * 100) };
+
+  let screen;
+  if (route.name === 'login') {
+    return <LoginScreen go={go} onGuest={() => setRoute({ name: 'home' })} onLogin={u => { setUser(u); notify('Xush kelibsiz, ' + u.name.split(' ')[0] + '!'); const back = route.back || { name: 'home' }; setRoute(back); if (pending) { setTimeout(pending, 0); setPending(null); } }} />;
+  }
+  if (route.name === 'player') {
+    return <>
+      <PlayerScreen data={data} courseId={route.id} lessonId={route.lesson} done={done} setDone={setDone} go={go} notify={notify} />
+      {toast && <div style={{ position: 'fixed', left: '50%', bottom: 24, transform: 'translateX(-50%)', zIndex: 200 }}><Toast {...toast} onClose={() => setToast(null)} /></div>}
+    </>;
+  }
+  if (route.name === 'market') screen = <MarketScreen key={JSON.stringify(route)} data={data} openCourse={openCourse} initial={route} />;
+  else if (route.name === 'course') screen = <CourseDetailScreen key={route.id} data={data} courseId={route.id} owned={owned} inCart={cart.includes(route.id)} onBuy={buy} onAddCart={addCart} openPlayer={openPlayer} go={go} />;
+  else if (route.name === 'cart') screen = <CartScreen data={data} cart={cart} go={go} onRemove={id => setCart(cart.filter(x => x !== id))} onCheckout={() => requireLogin(() => setCheckout(cart))} />;
+  else if (route.name === 'exam') screen = <ExamScreen go={go} setChromeless={setBare} />;
+  else if (route.name === 'my') screen = <MyCoursesScreen data={data} owned={owned} progress={progress} openCourse={openCourse} openPlayer={id => openPlayer(id, 7)} />;
+  else screen = <HomeScreen go={go} openCourse={openCourse} data={data} />;
+
+  return (
+    <div data-screen-label={route.name} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {!bare && <SiteHeader go={go} route={route.name} user={user} cartCount={cart.length} onSearch={q => go('market', { q })} />}
+      <div style={{ flex: 1 }}>{screen}</div>
+      {!bare && <SiteFooter go={go} />}
+      <CheckoutDialog open={!!checkout} items={checkout || []} data={data} onClose={() => setCheckout(null)} onPaid={paid} />
+      {toast && <div style={{ position: 'fixed', left: '50%', bottom: 24, transform: 'translateX(-50%)', zIndex: 200 }}><Toast {...toast} onClose={() => setToast(null)} /></div>}
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
