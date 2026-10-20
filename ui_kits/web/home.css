@@ -1,0 +1,24 @@
+@keyframes lz-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes lz-pop{0%{opacity:0;transform:scale(.4)}70%{transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+@keyframes lz-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes lz-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes lz-draw{from{background-size:0% 100%}to{background-size:100% 100%}}
+@keyframes lz-swap{0%{opacity:0;transform:translateY(8px)}15%,85%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-8px)}}
+@keyframes lz-shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.lz-rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.lz-rv.in{opacity:1;transform:none}
+.lz-mark.anim{background-repeat:no-repeat;background-size:0% 100%;animation:lz-draw .9s .7s var(--ease-out) forwards}
+.lz-w{display:inline-block;opacity:0;animation:lz-rise .7s var(--ease-out) forwards}
+.lz-lift{transition:transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+.lz-lift:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.lz-marquee{display:flex;width:max-content;animation:lz-marquee 38s linear infinite}
+.lz-marquee:hover{animation-play-state:paused}
+.lz-flip{perspective:1000px}
+.lz-flip>div{position:relative;transform-style:preserve-3d;transition:transform .7s var(--ease-out)}
+.lz-flip.on>div{transform:rotateY(180deg)}
+.lz-flip .f,.lz-flip .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.lz-flip .b{transform:rotateY(180deg)}
+.lz-faq{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease-out)}
+.lz-faq.on{grid-template-rows:1fr}
+.lz-faq>div{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.lz-rv{opacity:1;transform:none;transition:none}.lz-w{opacity:1;animation:none}.lz-mark.anim{animation:none;background-size:100% 100%}.lz-marquee,.lz-float{animation:none!important}}

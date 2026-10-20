@@ -1,0 +1,17 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Learning — LessonItem, FileItem, Comment" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:20px;background:var(--paper-0)}.r{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.col{display:flex;flex-direction:column;gap:16px}.lbl{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);width:84px}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.LehrerUzDesignSystem_0855c7;
+const { LessonItem, FileItem, Comment } = NS;
+function Demo(){return <div style={{display:'grid',gridTemplateColumns:'300px 1fr',gap:20}}>
+<div className="col" style={{gap:2}}><LessonItem index={1} title="Salomlashish va tanishuv" duration="08:12" state="done" /><LessonItem index={2} title="Nemis alifbosi va talaffuz" duration="11:30" state="done" /><LessonItem index={3} title="Der, die, das — artikllar" duration="12:40" state="current" /><LessonItem index={4} title="Mashq: artiklni toping" duration="10 savol" type="quiz" /><LessonItem index={5} title="Raqamlar 1–100" duration="09:05" preview /><LessonItem index={6} title="Fe’llarning tuslanishi" duration="14:20" state="locked" /></div>
+<div className="col"><FileItem name="Lektion-03-Arbeitsblatt.pdf" size="1,2 MB" /><FileItem name="Lektion-03-Audio.mp3" size="8,4 MB" kind="audio" />
+<Comment author="Jasur Toshmatov" time="2 soat oldin" timestamp="04:12" text="Nega bu yerda “den Tisch” bo‘ldi, “der” emas?" likes={3} onReply={()=>{}}><Comment author="Dilnoza Karimova" instructor time="1 soat oldin" text="Akkusativda erkak jinsi artikli der → den ga o‘zgaradi." likes={12} liked /></Comment></div>
+</div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

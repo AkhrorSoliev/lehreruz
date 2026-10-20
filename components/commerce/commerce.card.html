@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Commerce — CourseCard, Cover, Price, PaymentMethod" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{padding:20px;background:var(--paper-0)}.r{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.col{display:flex;flex-direction:column;gap:16px}.lbl{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);width:84px}</style></head><body><div id="root"></div>
+<script type="text/babel">
+const NS = window.LehrerUzDesignSystem_0855c7;
+const { CourseCard, CourseCover, PriceTag, PaymentMethod } = NS;
+function Demo(){const [p,setP]=React.useState('payme');return <div style={{display:'grid',gridTemplateColumns:'200px 200px 1fr',gap:20}}>
+<CourseCard course={{title:'Nemis tili A1: noldan boshlab',level:'A1',cover:{tone:'gold',word:'Hallo!'},badge:'Bestseller'}} />
+<CourseCard course={{title:'Goethe B1 imtihoniga tayyorlov',instructor:'Anna Weber',level:'B1',cover:{tone:'ink',word:'Prüfung? Kein Problem.'},rating:4.9,reviews:612,price:690000,oldPrice:990000}} progress={64} />
+<div className="col" style={{gap:10}}><PriceTag price={349000} oldPrice={590000} size="lg" />
+<PaymentMethod provider="click" subtitle="Click ilovasi yoki karta" selected={p==='click'} onSelect={setP} />
+<PaymentMethod provider="payme" logoSrc="../../assets/payments/payme.png" subtitle="Uzcard, Humo" selected={p==='payme'} onSelect={setP} />
+<PaymentMethod provider="uzum" logoSrc="../../assets/payments/uzum.png" subtitle="Uzum Bank · bo‘lib to‘lash" selected={p==='uzum'} onSelect={setP} />
+</div>
+<div style={{gridColumn:'1 / -1',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:10}}>{[['paper','A2','Wie geht’s?'],['red','B2','Auf geht’s!'],['green','A1','Guten Morgen'],['blue','C1','Fließend.']].map(([t,l,w])=><CourseCover key={t} tone={t} level={l} word={w} />)}</div>
+</div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>
